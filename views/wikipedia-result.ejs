@@ -1,1 +1,30 @@
-<%= wikicontent.result.content %> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/result.css">
+</head>
+<body>
+    <header>
+        <h1><%= wikicontent.result.title %> </h1>
+        <hr>
+    </header>
+    <main>
+        <section id='img'>
+            <img src="<%= wikicontent.result.images[3] %> " alt="">
+        </section>
+        <section id='text'>
+            <p>
+                <%= wikicontent.result.summary %> 
+            </p>
+        </section>
+    </main>
+</body>
+</html>
