@@ -12,19 +12,24 @@
     <link rel="stylesheet" href="/styles/result.css">
 </head>
 <body>
-    <header>
-        <h1><%= wikicontent.result.title %> </h1>
-        <hr>
-    </header>
+
     <main>
-        <section id='img'>
-            <img src="<%= wikicontent.result.images[3] %> " alt="">
-        </section>
-        <section id='text'>
-            <p>
-                <%= wikicontent.result.summary %> 
-            </p>
-        </section>
+        <% wikicontent.forEach(element => { %>
+            <% if(element.charAt(2) == '=') {%>
+    
+                <h2><%= element.replace(/=/g, '') %> </h2>
+    
+            <% }else if(element.charAt(0)== '=') {%>
+    
+                <h1><%= element.replace(/=/g, '') %></h1>
+    
+            <% }else {%>
+    
+                <p><%= element %> </p>
+    
+            <%}  %> 
+        <%}) %> 
     </main>
+    
 </body>
 </html>
