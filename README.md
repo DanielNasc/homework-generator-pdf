@@ -10,4 +10,15 @@ Um projeto onde irei tentar fazer uma aplicação que gera um pdf automaticament
 ```
 
 ## APIs
-- Wikipedia Parser (Algorithmia): <a href='https://algorithmia.com/algorithms/web/WikipediaParser'>Click</a>
+### Algorithmia
+- Wikipedia Parser: <a href='https://algorithmia.com/algorithms/web/WikipediaParser'>Click</a>
+- Summarizer: <a href='https://algorithmia.com/algorithms/nlp/Summarizer'> Click</a>
+
+## Dependencies
+- algorithmia
+- ejs
+- express
+- puppeteer
+
+## DevDependencies
+- nodemon
