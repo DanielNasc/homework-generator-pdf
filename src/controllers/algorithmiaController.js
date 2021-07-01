@@ -40,7 +40,6 @@ module.exports = {
             return newSentence
         }
 
-        console.log(summarizedContent);
         return summarizedContent
 
     }

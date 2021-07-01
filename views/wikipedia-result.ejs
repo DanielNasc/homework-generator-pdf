@@ -13,8 +13,12 @@
 </head>
 <body>
 
+    <header>
+        <h1><%= wikicontent.title %> </h1>
+    </header>
+
     <main>
-        <% wikicontent.forEach(element => { %>
+        <% wikicontent.content.forEach(element => { %>
             <% if(element.charAt(2) == '=') {%>
     
                 <h2><%= element.replace(/=/g, '') %> </h2>

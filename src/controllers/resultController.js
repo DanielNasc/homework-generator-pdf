@@ -1,11 +1,12 @@
-let wikicontent
+let wikicontent = {title: '', content: ''}
 const algorithmiaController = require('./algorithmiaController')
 const puppeteer = require('puppeteer')
 
 module.exports = {
     async save(req, res){
         const searchTerm = req.body.searchTerm
-        wikicontent = await algorithmiaController.searchInWikipedia(searchTerm)
+        wikicontent.title = searchTerm
+        wikicontent.content = await algorithmiaController.searchInWikipedia(searchTerm)
 
         const browser = await puppeteer.launch()
         const page = await browser.newPage()
@@ -18,8 +19,10 @@ module.exports = {
             format: 'letter',
             printBackground: true,
             margin: {
-                top: '2mm',
-                bottom: '10mm'
+                top: '10mm',
+                bottom: '10mm',
+                left: '5mm',
+                right: '5mm'
             }
         })
 
