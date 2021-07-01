@@ -4,9 +4,11 @@ const puppeteer = require('puppeteer')
 
 module.exports = {
     async save(req, res){
-        const searchTerm = req.body.searchTerm
+        const body = req.body
+        const searchTerm = body.searchTerm
+        const lang = body.lang
         wikicontent.title = searchTerm
-        wikicontent.content = await algorithmiaController.searchInWikipedia(searchTerm)
+        wikicontent.content = await algorithmiaController.searchInWikipedia(searchTerm, lang)
 
         const browser = await puppeteer.launch()
         const page = await browser.newPage()

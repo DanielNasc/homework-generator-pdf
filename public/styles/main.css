@@ -38,17 +38,18 @@ img{
 
 input{
     border-radius: 10px;
-    border: none;
     width:50%;
-    height: 1.5rem;
-    background: rgb(255, 255, 255);
     padding: .3rem;
 }
 
-button{
+button, select{
     border-radius: 5px;
+}
+
+.formitems{
     border: none;
     height: 1.5rem;
+    background: white;
 }
 
 *:focus{

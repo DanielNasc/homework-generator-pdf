@@ -15,8 +15,12 @@
     <main>
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/2244px-Wikipedia-logo-v2.svg.png" alt="Wikipedia logo">
         <form action="/" method="POST" class="box-shadow">
-            <input class="box-shadow" type="text" id="wikiinput" name='searchTerm' placeholder="Search" required> 
-            <button>PDF</button>
+            <input class="box-shadow formitems" type="text" id="wikiinput" name='searchTerm' placeholder="Search" required> 
+            <select name="lang" id="lang" class ='formitems'>
+                <option value="pt">Português</option>
+                <option value="en">English</option>
+            </select>
+            <button class='formitems'>PDF</button>
         </form>
     </main>
 </body>

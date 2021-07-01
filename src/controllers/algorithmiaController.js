@@ -3,9 +3,10 @@ const algorithmiaKey = require('../data/credentials.json').algorithmiaKey
 const sanitizeFunction = require('./sanitizeContent')
 
 module.exports = {
-    async searchInWikipedia(searchTerm){
+    async searchInWikipedia(searchTerm, lang){
 
         const input = {
+            'lang': lang,
             "articleName": searchTerm
         }
 
@@ -24,6 +25,10 @@ module.exports = {
 
         async function addSummarizedContent(content){
             for(const sentence of content){
+
+                if(sentence == '== Notes ==' || sentence == '== Referências =='){
+                    break;
+                }
 
                 if(sentence.startsWith('=')){
                     summarizedContent.push(sentence)
