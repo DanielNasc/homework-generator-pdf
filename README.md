@@ -16,7 +16,7 @@ Um projeto onde irei tentar fazer uma aplicação que gera um pdf automaticament
 - Wikipedia Parser: <a href='https://algorithmia.com/algorithms/web/WikipediaParser'>Click</a>
 - Summarizer: <a href='https://algorithmia.com/algorithms/nlp/Summarizer'>Click</a>
 
-## Google
+### Google
 - Google Custom Search: <a href='https://developers.google.com/custom-search/v1/overview'>Click</a>
 
 ## Dependencies
