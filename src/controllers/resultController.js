@@ -1,34 +1,23 @@
-let wikicontent = {title: '', content: ''}
 const algorithmiaController = require('./algorithmiaController')
-const puppeteer = require('puppeteer')
+const customSearch = require('./seachImages')
+const PdfMaker = require('./pdfMaker')
 
-module.exports = {
+let wikicontent = {title: '', content: [], img: ''}
+let lang = 'pt'
+
+module.exports = { 
     async save(req, res){
         const body = req.body
         const searchTerm = body.searchTerm
-        const lang = body.lang
+        lang = body.lang
+
         wikicontent.title = searchTerm
         wikicontent.content = await algorithmiaController.searchInWikipedia(searchTerm, lang)
+        wikicontent.img = await customSearch.searchImages(searchTerm)
 
-        const browser = await puppeteer.launch()
-        const page = await browser.newPage()
+        if(!wikicontent.content) return res.redirect('/ops')
 
-        await page.goto('http://localhost:3000/result',{
-            waitUntil: "networkidle0"
-        })
-
-        const pdf = await page.pdf({
-            format: 'letter',
-            printBackground: true,
-            margin: {
-                top: '10mm',
-                bottom: '10mm',
-                left: '5mm',
-                right: '5mm'
-            }
-        })
-
-        await browser.close()
+        const pdf = await PdfMaker.makePDF()
 
         res.contentType('application/pdf')
 
@@ -36,5 +25,9 @@ module.exports = {
     },
     render(req, res){
         res.render('wikipedia-result', {wikicontent})
+    },
+    erro(req,res){
+        const alert = lang == 'pt'? 'Pagina não encontrada :( tente pesquisar termos semelhantes': 'Page not found :( try searching for more specific terms'
+        return res.render('ops',{alert} )
     }
 }

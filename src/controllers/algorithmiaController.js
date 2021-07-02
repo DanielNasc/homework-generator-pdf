@@ -15,6 +15,8 @@ module.exports = {
         const wikipediaParserApi = authenticedAlgorithmia.algo('web/WikipediaParser/0.1.2')
         const wikipediaContent = await wikipediaParserApi.pipe(input)
 
+        if(!wikipediaContent.result) return undefined
+
         //SANITIZE
         const sanitizedContent = await sanitizeFunction.sanitize(wikipediaContent.result)
 
