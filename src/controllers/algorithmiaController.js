@@ -15,7 +15,7 @@ module.exports = {
         const wikipediaParserApi = authenticedAlgorithmia.algo('web/WikipediaParser/0.1.2')
         const wikipediaContent = await wikipediaParserApi.pipe(input)
 
-        if(!wikipediaContent.result) return undefined
+        if(!wikipediaContent.result) {console.log('> the Wikipedia content cannot be received'); return undefined}
 
         console.log('> wikipedia content received');
 
