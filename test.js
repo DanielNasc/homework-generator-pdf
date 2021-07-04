@@ -28,22 +28,21 @@ function fetchSentences(array, startsWith){
         const actualIndex = indexTitles.indexOf(t)
         const actualProperty = array[t]
         const nextIndex = actualIndex + 1
-        const actualPropertyIndexInArray = array.indexOf(actualProperty)
         let sentences = []
 
         const obj = {}
-        obj.title = array[actualPropertyIndexInArray]
+        obj.title = actualProperty
         
         if(indexTitles[nextIndex]){
             const nextProperty = array[indexTitles[nextIndex]]
             const nextPropertyIndexInArray = array.indexOf(nextProperty)
     
-            for(let i = (actualPropertyIndexInArray + 1); i < nextPropertyIndexInArray; i++){
+            for(let i = (t + 1); i < nextPropertyIndexInArray; i++){
                 sentences.push(array[i])
             }
     
         }else{
-            for(let i = (actualPropertyIndexInArray + 1); i < array.length; i++){
+            for(let i = (t + 1); i < array.length; i++){
                 sentences.push(array[i])
             }
         }
