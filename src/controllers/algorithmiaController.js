@@ -10,7 +10,8 @@ module.exports = {
             "articleName": searchTerm
         }
 
-        //GET WIKIPEDIA CONTENT
+        //GET WIKIPEDIA CONTENT==================================================================================
+
         const authenticedAlgorithmia = algorithmia.client(algorithmiaKey)
         const wikipediaParserApi = authenticedAlgorithmia.algo('web/WikipediaParser/0.1.2')
         const wikipediaContent = await wikipediaParserApi.pipe(input)
@@ -19,22 +20,21 @@ module.exports = {
 
         console.log('> wikipedia content received');
 
-        //SANITIZE
-        const sanitizedContent = await sanitizeFunction.sanitize(wikipediaContent.result)
+        //REMOVE BLANK LINES=====================================================================================
 
-        console.log('> sanitized content received');
+        const contentWithoutBlankLines = await sanitizeFunction.removeBlankLines(wikipediaContent.result)
 
-        //SUMMARIZER
+        console.log('> blank lines removed');
+
+        //SUMMARIZER==============================================================================================
+
         const summarizer = authenticedAlgorithmia.algo('nlp/Summarizer/0.1.8')
         let summarizedContent = []
-        await addSummarizedContent(sanitizedContent)
-
+        await addSummarizedContent(contentWithoutBlankLines)
         console.log('> summarized content received');
 
         async function addSummarizedContent(content){
             for(const sentence of content){
-            
-                console.log(`> sentence ${content.indexOf(sentence)} of ${content.length} summarized`);
 
                 if(sentence == '== Notes ==' || sentence == '== Referências =='){
                     break;
@@ -55,7 +55,12 @@ module.exports = {
             return newSentence
         }
 
-        return summarizedContent
+        //ORGANIZE CONTENT=========================================================================================
+        
+        const organizedContent = sanitizeFunction.organizeInArray(summarizedContent)
+        console.log('> successfully organized content');
+
+        return organizedContent
 
     }
 }

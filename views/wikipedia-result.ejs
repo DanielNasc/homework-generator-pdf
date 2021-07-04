@@ -21,19 +21,28 @@
             </section>
 
             <% wikicontent.content.forEach(element => { %>
-                <% if(element.charAt(2) == '=') {%>
+                <h1><%= element.title.replace(/=/g, '') %></h1>
         
-                    <h2><%= element.replace(/=/g, '') %> </h2>
-        
-                <% }else if(element.charAt(0)== '=') {%>
-        
-                    <h1><%= element.replace(/=/g, '') %></h1>
-        
-                <% }else {%>
-        
-                    <p><%= element %> </p>
-        
-                <%}  %> 
+                <% element.sentences.forEach(sentence => { %>
+                    
+                    <% if(typeof sentence[0] === 'string') {%>
+
+                        <p><%= sentence %> </p>
+
+                    <% } else {%>
+
+                        <h2><%= sentence.title.replace(/=/g, '') %> </h2>
+                        
+                        <% sentence.sentences.forEach(paragraph=> {%>
+                            <p><%= paragraph %> </p>
+                            
+                        <% }) %> 
+                            
+
+                    <% } %>   
+
+                <% }) %> 
+                
             <%}) %> 
     </main>
     

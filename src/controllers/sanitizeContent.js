@@ -1,5 +1,5 @@
 module.exports = {
-    async sanitize(content){
+    async removeBlankLines(content){
         const withoutBlankLines = removeBlankLines(content.content)
 
         function removeBlankLines(text){
@@ -17,5 +17,67 @@ module.exports = {
         }
 
         return withoutBlankLines
+        
+    },
+    organizeInArray(withoutBlankLines){
+        const organizedContent = fetchSentences(withoutBlankLines, '== ')
+
+        organizedContent.forEach(element => {
+
+            if(element.sentences.find(s => s.startsWith('='))){
+                const sectionsWithH2 = {}
+                sectionsWithH2.sentences = fetchSentences(element.sentences, '===')
+                const subSections = sectionsWithH2.sentences
+        
+                element.sentences = subSections
+            }else{
+                element.sentences = element.sentences
+            }
+            
+        })
+
+        function fetchSentences(array, startsWith){
+
+            let indexTitles = []
+            let allSentences = []
+        
+            array.forEach(e=>{
+                if(e.startsWith(startsWith)){
+                    indexTitles.push(array.indexOf(e))
+                }
+            })
+        
+            indexTitles.forEach(t =>{
+                const actualIndex = indexTitles.indexOf(t)
+                const actualProperty = array[t]
+                const nextIndex = actualIndex + 1
+                let sentences = []
+        
+                const obj = {}
+                obj.title = actualProperty
+                
+                if(indexTitles[nextIndex]){
+                    const nextProperty = array[indexTitles[nextIndex]]
+                    const nextPropertyIndexInArray = array.indexOf(nextProperty)
+            
+                    for(let i = (t + 1); i < nextPropertyIndexInArray; i++){
+                        sentences.push(array[i])
+                    }
+            
+                }else{
+                    for(let i = (t + 1); i < array.length; i++){
+                        sentences.push(array[i])
+                    }
+                }
+        
+                obj.sentences = sentences
+                allSentences.push(obj)
+                
+            })
+        
+            return allSentences
+        }
+
+        return organizedContent
     }
 }

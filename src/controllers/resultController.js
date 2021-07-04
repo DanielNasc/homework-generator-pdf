@@ -14,13 +14,12 @@ module.exports = {
         wikicontent.title = searchTerm
         console.log('> Search term added')
         wikicontent.content = await algorithmiaController.searchInWikipedia(searchTerm, lang)
+        console.log('> content loaded');
 
         if(!wikicontent.content) return res.redirect('/ops')
-        
-        console.log('> content loaded');
+
         wikicontent.img = await customSearch.searchImages(searchTerm)
         console.log('> img loaded');
-
 
         const pdf = await PdfMaker.makePDF()
 

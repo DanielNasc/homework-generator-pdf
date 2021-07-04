@@ -10,7 +10,11 @@ const array = [
     '=== title2 3 ===',
     'lorem3',
     'lorem32',
-    'lorem33'
+    'lorem33',
+    '== title4 ==',
+    'lorem4',
+    'lorem42',
+    'lorem43'
 ]
 
 function fetchSentences(array, startsWith){
@@ -58,11 +62,17 @@ function fetchSentences(array, startsWith){
 const sectionsWithH1Only = fetchSentences(array, '== ')
 
 sectionsWithH1Only.forEach(element => {
-    const sectionsWithH2 = {}
-    sectionsWithH2.sentences = fetchSentences(element.sentences, '===')
-    const subSections = sectionsWithH2.sentences
 
-    element.sentences = subSections
+    if(element.sentences.find(s => s.startsWith('='))){
+        const sectionsWithH2 = {}
+        sectionsWithH2.sentences = fetchSentences(element.sentences, '===')
+        const subSections = sectionsWithH2.sentences
+
+        element.sentences = subSections
+    }else{
+        element.sentences = element.sentences
+    }
+    
 })
 
 console.dir(sectionsWithH1Only, {depth: null})
