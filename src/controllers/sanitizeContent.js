@@ -6,12 +6,13 @@ module.exports = {
             const lines = text.split('\n')
 
             const withoutBlankLines = lines.filter(line => {
+
                 if(line.trim().length == 0){
                     return false
                 }
                 return true
             })
-
+            
             return withoutBlankLines
         }
 

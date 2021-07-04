@@ -10,8 +10,10 @@ module.exports = {
             q: searchTerm,
             searchType: 'image',
             num: 1,
-            imgSize: 'huge'
+            // imgSize: 'medium'
         })
+        .catch(err=> console.log('erro: ' + err))
+
         return response.data.items[0].link
     }
 }

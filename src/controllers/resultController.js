@@ -2,7 +2,7 @@ const algorithmiaController = require('./algorithmiaController')
 const customSearch = require('./seachImages')
 const PdfMaker = require('./pdfMaker')
 
-let wikicontent = {title: '', content: [], img: ''}
+const wikicontent = {}
 let lang = 'pt'
 
 module.exports = { 
@@ -12,12 +12,17 @@ module.exports = {
         lang = body.lang
 
         wikicontent.title = searchTerm
+        console.log('> Search term added')
         wikicontent.content = await algorithmiaController.searchInWikipedia(searchTerm, lang)
+        console.log('> content loaded');
         wikicontent.img = await customSearch.searchImages(searchTerm)
+        console.log('> img loaded');
 
         if(!wikicontent.content) return res.redirect('/ops')
 
         const pdf = await PdfMaker.makePDF()
+
+        console.log('> pdf loaded');
 
         res.contentType('application/pdf')
 
