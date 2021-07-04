@@ -55,3 +55,13 @@ button, select{
 *:focus{
     outline: none;
 }
+
+.gif{
+    margin-top: 2rem;
+    color: white;
+    transition: .3s
+}
+
+.hidden{
+    display: none;
+}

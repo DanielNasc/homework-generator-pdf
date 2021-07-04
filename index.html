@@ -7,6 +7,7 @@
     <title>Homework Generator</title>
 
     <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/main.js"></script>
 </head>
 <body>
     <header class="box-shadow">
@@ -20,8 +21,12 @@
                 <option value="pt">Português</option>
                 <option value="en">English</option>
             </select>
-            <button class='formitems'>PDF</button>
+            <button class='formitems' onclick="showgif()">PDF</button>
         </form>
+        <section class='gif hidden'>
+            <h2>Loading...</h2>
+            <iframe src="https://giphy.com/embed/11lxCeKo6cHkJy" width="453" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/dance-kawaii-11lxCeKo6cHkJy"></a></p>
+        </section>
     </main>
 </body>
 </html>
