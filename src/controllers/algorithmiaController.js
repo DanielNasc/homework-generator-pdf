@@ -1,6 +1,7 @@
 const algorithmia = require('algorithmia')
 const algorithmiaKey = require('../data/credentials.json').algorithmiaKey
 const sanitizeFunction = require('./sanitizeContent')
+const searchImg = require('./seachImages')
 
 module.exports = {
     async searchInWikipedia(searchTerm, lang){
@@ -8,7 +9,7 @@ module.exports = {
         const input = {
             'lang': lang,
             "articleName": searchTerm
-        }
+        } 
 
         //GET WIKIPEDIA CONTENT==================================================================================
 
@@ -22,7 +23,8 @@ module.exports = {
 
         //REMOVE BLANK LINES=====================================================================================
 
-        const contentWithoutBlankLines = await sanitizeFunction.removeBlankLines(wikipediaContent.result)
+        const contentWithoutBlankLines = await sanitizeFunction.removeBlankLines(wikipediaContent.result.content)
+        const wikipediaSummary = await sanitizeFunction.removeBlankLines(wikipediaContent.result.summary)
 
         console.log('> blank lines removed');
 
@@ -60,7 +62,14 @@ module.exports = {
         const organizedContent = sanitizeFunction.organizeInArray(summarizedContent)
         console.log('> successfully organized content');
 
-        return organizedContent
+        //ADD IMAGES===============================================================================================
+        organizedContent.forEach(async (element) => {
+            const img = await searchImg.searchImages(searchTerm, element.title)
+            element.img = img
+        })
+
+
+        return [organizedContent, wikipediaSummary]
 
     }
 }

@@ -7,23 +7,34 @@ let lang = 'pt'
 
 module.exports = { 
     async save(req, res){
+
+        //VARIABLES==================================================================================
+
         const body = req.body
         const searchTerm = body.searchTerm
         lang = body.lang
 
+        //ADD PROPERTIES=============================================================================
+
         wikicontent.title = searchTerm
         console.log('> Search term added')
-        wikicontent.content = await algorithmiaController.searchInWikipedia(searchTerm, lang)
+
+        const algorithmiaResponse = await algorithmiaController.searchInWikipedia(searchTerm, lang)
+        wikicontent.content = algorithmiaResponse[0]
+        wikicontent.summary = algorithmiaResponse[1]
         console.log('> content loaded');
 
         if(!wikicontent.content) return res.redirect('/ops')
 
         wikicontent.img = await customSearch.searchImages(searchTerm)
-        console.log('> img loaded');
+        console.log('> img loaded'); 
 
+        //GENERATE PDF===============================================================================
+        
         const pdf = await PdfMaker.makePDF()
-
         console.log('> pdf loaded');
+
+        //RESPONSE===================================================================================
 
         res.contentType('application/pdf')
 

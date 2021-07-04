@@ -1,6 +1,6 @@
 module.exports = {
     async removeBlankLines(content){
-        const withoutBlankLines = removeBlankLines(content.content)
+        const withoutBlankLines = removeBlankLines(content)
 
         function removeBlankLines(text){
             const lines = text.split('\n')

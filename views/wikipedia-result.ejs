@@ -16,12 +16,23 @@
             <h1><%= wikicontent.title %> </h1>
         </header>
         <main>
-            <section id="img">
+            <section class="img">
                 <img src="<%= wikicontent.img %> ">
             </section>
 
+            <section id='summary'>
+                <% wikicontent.summary.forEach(paragraph=>{ %>
+                    <p><%= paragraph%></p>
+                <%}) %> 
+            </section>
+
+
             <% wikicontent.content.forEach(element => { %>
                 <h1><%= element.title.replace(/=/g, '') %></h1>
+
+                <section class='img'>
+                    <img src="<%= element.img %> ">
+                </section>
         
                 <% element.sentences.forEach(sentence => { %>
                     

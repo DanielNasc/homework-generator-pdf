@@ -5,7 +5,6 @@
 }
 
 header > h1 {
-    text-align: center;
     font-family: 'Pacifico', cursive;
     font-size: 2.5rem;
     text-decoration: underline;
@@ -15,14 +14,18 @@ h1::first-letter{
     text-transform: uppercase;
 }
 
-section#text{
-    padding: 0 3rem;
-}
-section#img{
+h1, h2{
     text-align: center;
 }
 
-section#img > img {
+section#text{
+    padding: 0 3rem;
+}
+section.img{
+    text-align: center;
+}
+
+section.img > img {
     width: 50%;
     border-radius: 15px;
     box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.815)
