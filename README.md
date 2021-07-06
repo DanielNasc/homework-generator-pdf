@@ -6,7 +6,7 @@ Um projeto onde irei tentar fazer uma aplicação que gera um pdf automaticament
 ```json
     {
         "algorithmiaKey": "SUA_KEY",
-        "cseId": "CSE_ID",
+        "cseId": "CUSTOM_SEARCH_ENGINE_ID",
         "customSearchApiKey": "YOUR_KEY"
     }
 ```
@@ -28,3 +28,4 @@ Um projeto onde irei tentar fazer uma aplicação que gera um pdf automaticament
 
 ## DevDependencies
 - nodemon
+- electron

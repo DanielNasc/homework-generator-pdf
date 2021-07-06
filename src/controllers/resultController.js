@@ -20,11 +20,13 @@ module.exports = {
         console.log('> Search term added')
 
         const algorithmiaResponse = await algorithmiaController.searchInWikipedia(searchTerm, lang)
+        
+        if(!algorithmiaResponse) return res.redirect('/ops')
+
         wikicontent.content = algorithmiaResponse[0]
         wikicontent.summary = algorithmiaResponse[1]
         console.log('> content loaded');
 
-        if(!wikicontent.content) return res.redirect('/ops')
 
         wikicontent.img = await customSearch.searchImages(searchTerm)
         console.log('> img loaded'); 

@@ -1,4 +1,8 @@
 function showgif(){
     const sectionGif = document.querySelector('.gif')
-    sectionGif.classList.remove('hidden')
+    const gifClassList = sectionGif.classList
+    
+    if(gifClassList.contains('hidden')){
+        gifClassList.remove('hidden')
+    }
 }
