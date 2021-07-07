@@ -25,7 +25,8 @@ header{
 main{
     margin: 2rem auto;
     background: var(--black);
-    width: 40rem;
+    max-width: 40rem;
+    min-width: 10rem;
     padding: 5rem;
 
     border-radius: 15px;
@@ -40,6 +41,7 @@ input{
     border-radius: 10px;
     width:50%;
     padding: .3rem;
+    margin-bottom: 1rem;
 }
 
 button, select{
