@@ -12,7 +12,7 @@ app.set('view engine', 'ejs')
 
 app.get('/', (req,res) => res.sendFile(htmlPath))
 app.post('/', resultController.save)
-app.get('/result', resultController.render)
+app.get('/result/:path', resultController.render)
 app.get('/ops', resultController.erro)
 
 app.listen(PORT)

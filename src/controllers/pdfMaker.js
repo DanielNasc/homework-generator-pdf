@@ -1,11 +1,11 @@
 const puppeteer = require('puppeteer')
 
 module.exports = {
-    async makePDF(){
+    async makePDF(path){
         const browser = await puppeteer.launch()
         const page = await browser.newPage()
 
-        await page.goto('http://localhost:3000/result',{
+        await page.goto(`http://localhost:3000/result${path}`,{
             waitUntil: "networkidle0"
         })
 

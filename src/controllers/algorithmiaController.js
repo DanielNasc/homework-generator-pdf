@@ -6,6 +6,30 @@ const searchImg = require('./seachImages')
 module.exports = {
     async searchInWikipedia(searchTerm, lang){
 
+        //IF WIKIPEDIA PARSER DOESNT WORK===============================================
+        // const array = [
+        //     '== title ==',
+        //     '=== title2 ===',
+        //     'lorem',
+        //     '== title1 2 ==',
+        //     '=== title2 2 ===',
+        //     '======= ddd ========',
+        //     'lorem2',
+        //     '== title1 3 ==',
+        //     '=== title2 3 ===',
+        //     'lorem3',
+        //     'lorem32',
+        //     'lorem33',
+        //     '== title4 ==',
+        //     'lorem4',
+        //     'lorem42',
+        //     'lorem43'
+        // ]
+        
+        // const org = sanitizeFunction.organizeInArray(array)
+
+        // return [org, ['eee','eeeeee']]
+
         const input = {
             'lang': lang,
             "articleName": searchTerm
