@@ -1,8 +1,8 @@
 require('dotenv').config();
 const algorithmia = require('algorithmia')
 const algorithmiaKey = process.env.ALGORITHMIA_KEY
-const sanitizeFunction = require('./sanitizeContent')
-const searchImg = require('./seachImages')
+const sanitizeContent = require('../services/sanitizeContent')
+const searchImg = require('../services/seachImages')
 
 module.exports = {
     async searchInWikipedia(searchTerm, lang){
@@ -27,7 +27,7 @@ module.exports = {
         //     'lorem43'
         // ]
         
-        // const org = sanitizeFunction.organizeInArray(array)
+        // const org = sanitizeContent.organizeInArray(array)
        // return [org, ['eee','eeeeee']] 
 
         const input = {
@@ -47,8 +47,8 @@ module.exports = {
 
         //REMOVE BLANK LINES=====================================================================================
 
-        const contentWithoutBlankLines = await sanitizeFunction.removeBlankLines(wikipediaContent.result.content)
-        const wikipediaSummary = await sanitizeFunction.removeBlankLines(wikipediaContent.result.summary)
+        const contentWithoutBlankLines = await sanitizeContent.removeBlankLines(wikipediaContent.result.content)
+        const wikipediaSummary = await sanitizeContent.removeBlankLines(wikipediaContent.result.summary)
 
         console.log('> blank lines removed');
 
@@ -83,7 +83,7 @@ module.exports = {
 
         //ORGANIZE CONTENT=========================================================================================
         
-        const organizedContent = sanitizeFunction.organizeInArray(summarizedContent)
+        const organizedContent = sanitizeContent.organizeInArray(summarizedContent)
         console.log('> successfully organized content');
 
         //ADD IMAGES===============================================================================================

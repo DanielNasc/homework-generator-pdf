@@ -4,7 +4,7 @@ const path = require('path')
 const resultController = require('./controllers/resultController')
 
 const PORT = process.env.PORT || 3000
-const htmlPath = path.join(__dirname,'../index.html')
+const htmlPath = path.join(__dirname,'../views/index.html')
 
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))

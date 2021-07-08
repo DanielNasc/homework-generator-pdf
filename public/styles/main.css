@@ -67,3 +67,7 @@ button, select{
 .hidden{
     display: none;
 }
+
+iframe{
+    width: 70%;
+}

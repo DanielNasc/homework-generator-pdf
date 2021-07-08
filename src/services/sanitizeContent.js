@@ -57,10 +57,9 @@ module.exports = {
                 obj.title = actualProperty
                 
                 if(indexTitles[nextIndex]){
-                    const nextProperty = array[indexTitles[nextIndex]]
-                    const nextPropertyIndexInArray = array.indexOf(nextProperty)
+                    const nextPropertyIndexInMainArray = indexTitles[nextIndex]
             
-                    for(let i = (t + 1); i < nextPropertyIndexInArray; i++){
+                    for(let i = (t + 1); i < nextPropertyIndexInMainArray; i++){
                         sentences.push(array[i])
                     }
             

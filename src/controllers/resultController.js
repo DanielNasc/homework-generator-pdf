@@ -1,6 +1,6 @@
 const algorithmiaController = require('./algorithmiaController')
-const customSearch = require('./seachImages')
-const PdfMaker = require('./pdfMaker')
+const customSearch = require('../services/seachImages')
+const PdfMaker = require('../services/pdfMaker')
 
 const temporaryJSON = {
     searches: []
