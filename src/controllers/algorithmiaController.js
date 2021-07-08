@@ -1,5 +1,6 @@
+require('dotenv').config();
 const algorithmia = require('algorithmia')
-const algorithmiaKey = require('../data/credentials.json').algorithmiaKey
+const algorithmiaKey = process.env.ALGORITHMIA_KEY
 const sanitizeFunction = require('./sanitizeContent')
 const searchImg = require('./seachImages')
 

@@ -2,13 +2,12 @@
 Um projeto onde irei tentar fazer uma aplicação que gera um pdf automaticamente a partir de uma pesquisa na wikipedia
 
 ## Credentials
-**src/data/credentials.json**
-```json
-    {
-        "algorithmiaKey": "SUA_KEY",
-        "cseId": "CUSTOM_SEARCH_ENGINE_ID",
-        "customSearchApiKey": "YOUR_KEY"
-    }
+**⚠️Crie um arquivo .env com suas credenciais neste formato:** <br>
+**⚠️Create an .env file with your credentials in this format:**
+```
+    ALGORITHMIA_KEY= [...]
+    GOOGLE_CUSTOM_SEARCH_ENGINE = [...]
+    CUSTOM_SEARCH_API_KEY = [...]
 ```
 
 ## APIs
@@ -25,6 +24,7 @@ Um projeto onde irei tentar fazer uma aplicação que gera um pdf automaticament
 - express
 - puppeteer
 - googleapis
+- dotenv
 
 ## DevDependencies
 - nodemon
