@@ -27,8 +27,7 @@ module.exports = {
         // ]
         
         // const org = sanitizeFunction.organizeInArray(array)
-
-        // return [org, ['eee','eeeeee']]
+       // return [org, ['eee','eeeeee']] 
 
         const input = {
             'lang': lang,
@@ -87,13 +86,13 @@ module.exports = {
         console.log('> successfully organized content');
 
         //ADD IMAGES===============================================================================================
-        organizedContent.forEach(async (element) => {
-            const img = await searchImg.searchImages(searchTerm, element.title)
-            element.img = img
-        })
+        // organizedContent.forEach(async (element) => {
+        //     const img = await searchImg.searchImages(searchTerm, element.title)
+        //     element.img = img
+        // })
 
 
         return [organizedContent, wikipediaSummary]
-
+ 
     }
 }

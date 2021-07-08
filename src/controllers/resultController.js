@@ -3,7 +3,7 @@ const customSearch = require('./seachImages')
 const PdfMaker = require('./pdfMaker')
 
 const temporaryJSON = {
-    searchs: []
+    searches: []
 }
 let lang = 'pt'
 
@@ -16,12 +16,29 @@ module.exports = {
         const body = req.body
         const searchTerm = body.searchTerm
         const searchTermTrimmed = searchTerm.replace(/ /g, '_')
+        const id = `${searchTermTrimmed}_${lang}`
         lang = body.lang
+
+        //CHECK======================================================================================
+
+        const checkIfTheTemporaryJSONHasTHisSearch = temporaryJSON.searches.find(summary=> summary.id == id)
+
+        if(checkIfTheTemporaryJSONHasTHisSearch){
+            console.log('> checked: contains')
+
+            const pdf = await PdfMaker.makePDF(checkIfTheTemporaryJSONHasTHisSearch.id)
+            console.log('> pdf loaded')
+            res.contentType('application/pdf')
+
+            return res.send(pdf)
+        }
+
+        console.log("> checked: doesn't contains")
 
         //ADD PROPERTIES=============================================================================
 
         wikicontent.title = searchTerm
-        wikicontent.id = `${searchTermTrimmed}_${lang}`
+        wikicontent.id = id
         console.log('> Search term added')
 
         const algorithmiaResponse = await algorithmiaController.searchInWikipedia(searchTerm, lang)
@@ -36,7 +53,7 @@ module.exports = {
         wikicontent.img = await customSearch.searchImages(searchTerm) //if u "Quota exceeded for quota metric 'Queries' and limit 'Queries per day'"" use this 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Mallard2.jpg/1200px-Mallard2.jpg'
         console.log('> img loaded'); 
 
-        temporaryJSON.searchs.push({...wikicontent})
+        temporaryJSON.searches.push({...wikicontent})
 
         //return res.redirect('/result/'+wikicontent.id)
 
@@ -53,7 +70,7 @@ module.exports = {
     },
     render(req, res){
         const searchTerm = req.params.path
-        const wikicontent = temporaryJSON.searchs.find(summary=> summary.id == searchTerm)
+        const wikicontent = temporaryJSON.searches.find(summary=> summary.id == searchTerm)
 
         if(!wikicontent) return res.send('404')
 

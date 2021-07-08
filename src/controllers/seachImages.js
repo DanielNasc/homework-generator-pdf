@@ -7,13 +7,15 @@ module.exports = {
 
         const searchThis = content === undefined ? searchTerm: `${searchTerm} ${content}`
 
+        console.log('search this: '+searchThis);
+
         const response = await customSearch.cse.list({
             auth: credentials.customSearchApiKey,
             cx: credentials.cseId,
             q: searchThis,
             searchType: 'image',
             num: 1,
-            imgSize: 'xlarge'
+            imgSize: 'medium'
         })
         .catch(err=> console.log('erro: ' + err))
 
