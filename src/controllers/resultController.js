@@ -5,7 +5,6 @@ const PdfMaker = require('../services/pdfMaker')
 const temporaryJSON = {
     searches: []
 }
-let lang = 'pt'
 
 module.exports = { 
     async save(req, res){
@@ -15,9 +14,19 @@ module.exports = {
         const wikicontent = {}
         const body = req.body
         const searchTerm = body.searchTerm
+        const lang = body.lang
         const searchTermTrimmed = searchTerm.replace(/ /g, '_')
         const id = `${searchTermTrimmed}_${lang}`
-        lang = body.lang
+
+        //LANGUAGE COOKIE============================================================================
+
+        let cookieLanguage = req.cookies.lang
+
+        if(cookieLanguage != lang){
+            cookieLanguage = lang
+            console.log('> cookie: '+cookieLanguage)
+            res.cookie('lang', cookieLanguage)
+        }
 
         //CHECK======================================================================================
 
@@ -50,7 +59,8 @@ module.exports = {
         console.log('> content loaded');
 
 
-        wikicontent.img = await customSearch.searchImages(searchTerm) //if u "Quota exceeded for quota metric 'Queries' and limit 'Queries per day'"" use this 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Mallard2.jpg/1200px-Mallard2.jpg'
+        wikicontent.img = await customSearch.searchImages(searchTerm) 
+        //if "Quota exceeded for quota metric 'Queries' and limit 'Queries per day'" use this 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Mallard2.jpg/1200px-Mallard2.jpg'
         console.log('> img loaded'); 
 
         temporaryJSON.searches.push({...wikicontent})
@@ -77,6 +87,7 @@ module.exports = {
         return res.render('wikipedia-result', {wikicontent})
     },
     erro(req,res){
+        const lang = req.cookies.lang
         const alert = lang == 'pt'? 'Pagina não encontrada :( tente pesquisar termos semelhantes': 'Page not found :( try searching for more specific terms'
         return res.render('ops',{alert} )
     }

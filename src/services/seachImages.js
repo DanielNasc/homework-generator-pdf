@@ -16,7 +16,6 @@ module.exports = {
             q: searchThis,
             searchType: 'image',
             num: 1,
-            imgSize: 'medium'
         })
         .catch(err=> console.log('erro: ' + err))
 
