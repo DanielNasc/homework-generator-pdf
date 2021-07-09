@@ -5,9 +5,9 @@ Um projeto onde irei tentar fazer uma aplicação que gera um pdf automaticament
 **⚠️Crie um arquivo .env com suas credenciais neste formato:** <br>
 **⚠️Create an .env file with your credentials in this format:**
 ```
-    ALGORITHMIA_KEY= [...]
-    GOOGLE_CUSTOM_SEARCH_ENGINE = [...]
-    CUSTOM_SEARCH_API_KEY = [...]
+    ALGORITHMIA_KEY= YOUR_KEY
+    GOOGLE_CUSTOM_SEARCH_ENGINE = CSE_ID
+    CUSTOM_SEARCH_API_KEY = SUA_KEY
 ```
 
 ## APIs
@@ -25,6 +25,7 @@ Um projeto onde irei tentar fazer uma aplicação que gera um pdf automaticament
 - puppeteer
 - googleapis
 - dotenv
+- cookie-parser
 
 ## DevDependencies
 - nodemon
