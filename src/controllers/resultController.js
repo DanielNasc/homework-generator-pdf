@@ -48,7 +48,7 @@ module.exports = {
 
         wikicontent.title = searchTerm
         wikicontent.id = id
-        console.log('> Search term added')
+        console.log('> Title added: ' + searchTerm)
 
         const algorithmiaResponse = await algorithmiaController.searchInWikipedia(searchTerm, lang)
         
@@ -65,7 +65,7 @@ module.exports = {
 
         temporaryJSON.searches.push({...wikicontent})
 
-        //return res.redirect('/result/'+wikicontent.id)
+        // return res.redirect('/result/'+wikicontent.id)
 
         //GENERATE PDF===============================================================================
         
@@ -79,10 +79,10 @@ module.exports = {
         return res.send(pdf)
     },
     render(req, res){
-        const searchTerm = req.params.path
-        const wikicontent = temporaryJSON.searches.find(summary=> summary.id == searchTerm)
+        const searchId = req.params.path
+        const wikicontent = temporaryJSON.searches.find(summary=> summary.id == searchId)
 
-        if(!wikicontent) return res.send('404')
+        if(!wikicontent) return res.status(404).send('<h1>Page not Found</h1>')
 
         return res.render('wikipedia-result', {wikicontent})
     },

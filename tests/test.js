@@ -69,8 +69,6 @@ sectionsWithH1Only.forEach(element => {
         const subSections = sectionsWithH2.sentences
 
         element.sentences = subSections
-    }else{
-        element.sentences = element.sentences
     }
     
 })

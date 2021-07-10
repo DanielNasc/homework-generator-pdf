@@ -17,5 +17,6 @@ app.get('/', (req,res) => res.sendFile(htmlPath))
 app.post('/', resultController.save)
 app.get('/result/:path', resultController.render)
 app.get('/ops', resultController.erro)
+app.use((req,res) => {res.status(404).send('<h1>404</h1>')})
 
 app.listen(PORT)

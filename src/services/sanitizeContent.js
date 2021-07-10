@@ -20,8 +20,10 @@ module.exports = {
         
     },
     organizeInArray(withoutBlankLines){
+        //ORGANIZE SECTIONS
         const organizedContent = fetchSentences(withoutBlankLines, '== ')
 
+        //ORGANIZE SUB_SECTIONS
         organizedContent.forEach(element => {
 
             if(element.sentences.find(s => s.startsWith('='))){
@@ -30,10 +32,7 @@ module.exports = {
                 const subSections = sectionsWithH2.sentences
         
                 element.sentences = subSections
-            }else{
-                element.sentences = element.sentences
             }
-            
         })
 
         function fetchSentences(array, startsWith){
@@ -41,21 +40,26 @@ module.exports = {
             let indexTitles = []
             let allSentences = []
         
+            //INSERT TITLE INDICES INTO indexTitles========================================
             array.forEach(e=>{
                 if(e.startsWith(startsWith)){
                     indexTitles.push(array.indexOf(e))
                 }
             })
         
+
+            //ORGANIZE CONTENT=============================================================
             indexTitles.forEach(t =>{
                 const actualIndex = indexTitles.indexOf(t)
                 const actualProperty = array[t]
                 const nextIndex = actualIndex + 1
                 let sentences = []
         
+                //OBJECT OF THIS SECTION====================================================
                 const obj = {}
                 obj.title = actualProperty
                 
+                //INSERT SETENCES BETWEEN THE TWO TITLES INTO sentences array===============
                 if(indexTitles[nextIndex]){
                     const nextPropertyIndexInMainArray = indexTitles[nextIndex]
             
@@ -69,9 +73,10 @@ module.exports = {
                     }
                 }
         
+                //INSERT sentences INTO obj
                 obj.sentences = sentences
+
                 allSentences.push(obj)
-                
             })
         
             return allSentences
