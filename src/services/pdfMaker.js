@@ -6,10 +6,10 @@ module.exports = {
             headless: true,
             args: ['--no-sandbox','--disable-setuid-sandbox']
           })
-          
+
         const page = await browser.newPage()
 
-        await page.goto(`http://localhost:3000/result/${path}`,{
+        await page.goto(`https://wikipedia-to-pdf.herokuapp.com/result/${path}`,{
             waitUntil: "networkidle0"
         })
 
