@@ -13,6 +13,10 @@ module.exports = {
             waitUntil: "networkidle0"
         })
 
+        // await page.goto(`http://localhost:3000/result/${path}`,{
+        //     waitUntil: "networkidle0"
+        // })
+
         const pdf = await page.pdf({
             format: 'letter',
             printBackground: true,

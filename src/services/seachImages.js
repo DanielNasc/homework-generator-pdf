@@ -10,15 +10,20 @@ module.exports = {
 
         const searchThis = content === undefined ? searchTerm: `${searchTerm} ${content}`
 
-        const response = await customSearch.cse.list({
-            auth: CUSTOM_SERACH_KEY,
-            cx: CSE_ID,
-            q: searchThis,
-            searchType: 'image',
-            num: 1,
-        })
-        .catch(err=> console.log('erro: ' + err))
+        try {
+            const response = await customSearch.cse.list({
+                auth: CUSTOM_SERACH_KEY,
+                cx: CSE_ID,
+                q: searchThis,
+                searchType: 'image',
+                num: 1,
+            })
 
-        return response.data.items[0].link
+            return response.data.items[0].link
+
+        } catch (error) {
+            return 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Mallard2.jpg/1200px-Mallard2.jpg'
+        }
+
     }
 }

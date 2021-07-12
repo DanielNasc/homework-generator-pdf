@@ -1,14 +1,11 @@
 const algorithmiaController = require('./algorithmiaController')
 const customSearch = require('../services/seachImages')
 const PdfMaker = require('../services/pdfMaker')
-
-const temporaryJSON = {
-    searches: []
-}
+const mongodb = require('../services/mongoDb')
 
 module.exports = { 
     async save(req, res){
-
+        
         //VARIABLES==================================================================================
 
         const wikicontent = {}
@@ -30,12 +27,11 @@ module.exports = {
 
         //CHECK======================================================================================
 
-        const checkIfTheTemporaryJSONHasTHisSearch = temporaryJSON.searches.find(summary=> summary.id == id)
-
+        const checkIfTheTemporaryJSONHasTHisSearch = await mongodb.find(id)
         if(checkIfTheTemporaryJSONHasTHisSearch){
             console.log('> checked: contains')
 
-            const pdf = await PdfMaker.makePDF(checkIfTheTemporaryJSONHasTHisSearch.id)
+            const pdf = await PdfMaker.makePDF(id)
             console.log('> pdf loaded')
             res.contentType('application/pdf')
 
@@ -47,7 +43,7 @@ module.exports = {
         //ADD PROPERTIES=============================================================================
 
         wikicontent.title = searchTerm
-        wikicontent.id = id
+        wikicontent._id = id
         console.log('> Title added: ' + searchTerm)
 
         const algorithmiaResponse = await algorithmiaController.searchInWikipedia(searchTerm, lang)
@@ -63,13 +59,13 @@ module.exports = {
         //if "Quota exceeded for quota metric 'Queries' and limit 'Queries per day'" use this 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Mallard2.jpg/1200px-Mallard2.jpg'
         console.log('> img loaded'); 
 
-        temporaryJSON.searches.push({...wikicontent})
+        await mongodb.insert({...wikicontent})
 
-        // return res.redirect('/result/'+wikicontent.id)
+        //return res.redirect('/result/'+wikicontent._id)
 
         //GENERATE PDF===============================================================================
         
-        const pdf = await PdfMaker.makePDF(wikicontent.id);
+        const pdf = await PdfMaker.makePDF(wikicontent._id);
         console.log('> pdf loaded');
 
         //RESPONSE===================================================================================
@@ -78,9 +74,9 @@ module.exports = {
 
         return res.send(pdf)
     },
-    render(req, res){
+    async render(req, res){
         const searchId = req.params.path
-        const wikicontent = temporaryJSON.searches.find(summary=> summary.id == searchId)
+        const wikicontent = await mongodb.find(searchId)
 
         if(!wikicontent) return res.status(404).send('<h1>Page not Found</h1>')
 
