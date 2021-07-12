@@ -8,6 +8,10 @@ Um projeto onde irei tentar fazer uma aplicação que gera um pdf automaticament
     ALGORITHMIA_KEY= YOUR_KEY
     GOOGLE_CUSTOM_SEARCH_ENGINE = CSE_ID
     CUSTOM_SEARCH_API_KEY = SUA_KEY
+    MONGO_USER = YOUR_MONGODB_CLUSTER_USERNAME
+    MONGO_PASSWORD= YOUR_MONGODB_CLUSTER_PASSWORD
+    CLUSTER =  THE_NAME_OF_YOUR_CLUSTER
+    LOCAL = localhost
 ```
 
 ## APIs
