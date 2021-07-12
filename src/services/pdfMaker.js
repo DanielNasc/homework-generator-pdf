@@ -1,4 +1,7 @@
+require('dotenv').config()
 const puppeteer = require('puppeteer')
+
+const local = process.env.LOCAL
 
 module.exports = {
     async makePDF(path){
@@ -9,14 +12,19 @@ module.exports = {
 
         const page = await browser.newPage()
 
-        await page.goto(`https://wikipedia-to-pdf.herokuapp.com/result/${path}`,{
-            waitUntil: "networkidle0"
-        })
+        if(local == 'localhost'){    
 
-        // await page.goto(`http://localhost:3000/result/${path}`,{
-        //     waitUntil: "networkidle0"
-        // })
+            await page.goto(`http://localhost:3000/result/${path}`,{
+                waitUntil: "networkidle0"
+            })
 
+        }else{
+
+            await page.goto(`https://wikipedia-to-pdf.herokuapp.com/result/${path}`,{
+                waitUntil: "networkidle0"
+            }) 
+        }
+        
         const pdf = await page.pdf({
             format: 'letter',
             printBackground: true,
