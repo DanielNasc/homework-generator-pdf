@@ -27,7 +27,7 @@ main{
     background: var(--black);
     max-width: 40rem;
     min-width: 10rem;
-    padding: 5rem;
+    padding: 2rem;
 
     border-radius: 15px;
 }
@@ -69,5 +69,5 @@ button, select{
 }
 
 iframe{
-    width: 70%;
+    width: 100%;
 }
