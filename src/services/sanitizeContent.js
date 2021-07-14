@@ -26,7 +26,7 @@ module.exports = {
         //ORGANIZE SUB_SECTIONS
         organizedContent.forEach(element => {
 
-            if(element.sentences.find(s => s.startsWith('='))){
+            if(element.sentences.find(s => s != undefined && s.startsWith('=') )){
                 const sectionsWithH2 = {}
                 sectionsWithH2.sentences = fetchSentences(element.sentences, '===')
                 const subSections = sectionsWithH2.sentences
@@ -42,7 +42,7 @@ module.exports = {
         
             //INSERT TITLE INDICES INTO indexTitles========================================
             array.forEach(e=>{
-                if(e.startsWith(startsWith)){
+                if( e != undefined && e.startsWith(startsWith) ){
                     indexTitles.push(array.indexOf(e))
                 }
             })
