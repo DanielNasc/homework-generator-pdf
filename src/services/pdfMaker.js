@@ -12,6 +12,7 @@ module.exports = {
 
         const page = await browser.newPage()
 
+        console.log(local);
         if(local == 'localhost'){    
 
             await page.goto(`http://localhost:3000/result/${path}`,{

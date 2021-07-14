@@ -12,7 +12,7 @@ module.exports = {
         const body = req.body
         const searchTerm = body.searchTerm
         const lang = body.lang
-        const searchTermTrimmed = searchTerm.replace(/ /g, '_')
+        const searchTermTrimmed = searchTerm.toLowerCase().replace(/ /g, '_')
         const id = `${searchTermTrimmed}_${lang}`
 
         //LANGUAGE COOKIE============================================================================
@@ -29,7 +29,7 @@ module.exports = {
 
         const checkIfTheTemporaryJSONHasTHisSearch = await mongodb.find(id)
         if(checkIfTheTemporaryJSONHasTHisSearch){
-            console.log('> checked: contains')
+            console.log('> checked: contains: ' +id)
 
             const pdf = await PdfMaker.makePDF(id)
             console.log('> pdf loaded')
