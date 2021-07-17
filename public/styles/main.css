@@ -40,16 +40,16 @@ img{
     margin-bottom: 3rem;
 }
 
+
+button, select, option, input{
+    border-radius: 5px;
+    color: black;
+}
 input{
     border-radius: 10px;
     width:50%;
     padding: .3rem;
     margin-bottom: 1rem;
-}
-
-button, select, option{
-    border-radius: 5px;
-    color: black;
 }
 
 .formitems{
