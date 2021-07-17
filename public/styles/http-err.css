@@ -1,0 +1,9 @@
+ul{
+    width: 50%;
+    margin: auto;
+}
+
+li{
+    text-align: start;
+    margin-bottom: .5rem;
+}

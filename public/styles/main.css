@@ -3,6 +3,10 @@
     --box-shadow:  0 0 10px rgba(0, 0, 0, 0.226);
 }
 
+*{
+    color: white;
+}
+
 .box-shadow{
     box-shadow: var(--box-shadow);
 }
@@ -18,7 +22,6 @@ body{
 
 header{
     background: var(--black);
-    color: white;
     padding: 20px;
 }
 
@@ -44,8 +47,9 @@ input{
     margin-bottom: 1rem;
 }
 
-button, select{
+button, select, option{
     border-radius: 5px;
+    color: black;
 }
 
 .formitems{
@@ -60,7 +64,6 @@ button, select{
 
 .gif{
     margin-top: 2rem;
-    color: white;
     transition: .3s
 }
 
@@ -81,5 +84,4 @@ footer .fab{
 }
 footer a{
     text-decoration: none;
-    color: white;
 }
