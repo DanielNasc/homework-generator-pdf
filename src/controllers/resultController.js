@@ -65,7 +65,9 @@ module.exports = {
 
         //GENERATE PDF===============================================================================
         
-        const pdf = await PdfMaker.makePDF(wikicontent._id);
+        const pdf = await PdfMaker.makePDF(wikicontent._id)
+        .catch(e=>console.log(e)) 
+        
         console.log('> pdf loaded');
 
         //RESPONSE===================================================================================

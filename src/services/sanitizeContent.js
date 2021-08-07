@@ -62,15 +62,12 @@ module.exports = {
                 //INSERT SETENCES BETWEEN THE TWO TITLES INTO sentences array===============
                 if(indexTitles[nextIndex]){
                     const nextPropertyIndexInMainArray = indexTitles[nextIndex]
-            
-                    for(let i = (t + 1); i < nextPropertyIndexInMainArray; i++){
-                        sentences.push(array[i])
-                    }
-            
+
+                    const slicedArray = array.slice(t+1, nextPropertyIndexInMainArray)
+                    sentences.push(...slicedArray)
                 }else{
-                    for(let i = (t + 1); i < array.length; i++){
-                        sentences.push(array[i])
-                    }
+                    const slicedArray = array.slice(t+1, array.length)
+                    sentences.push(...slicedArray)
                 }
         
                 //INSERT sentences INTO obj

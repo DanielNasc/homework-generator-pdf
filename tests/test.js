@@ -38,17 +38,20 @@ function fetchSentences(array, startsWith){
         obj.title = actualProperty
         
         if(indexTitles[nextIndex]){
-            const nextProperty = array[indexTitles[nextIndex]]
-            const nextPropertyIndexInArray = array.indexOf(nextProperty)
-    
-            for(let i = (t + 1); i < nextPropertyIndexInArray; i++){
-                sentences.push(array[i])
-            }
+            const nextPropertyIndexInMainArray = indexTitles[nextIndex]
+
+            const arraytest = array.slice(t+1, nextPropertyIndexInMainArray)
+            sentences.push(...arraytest)
+            // for(let i = (t + 1); i < nextPropertyIndexInArray; i++){
+            //     sentences.push(array[i])
+            // }
     
         }else{
-            for(let i = (t + 1); i < array.length; i++){
-                sentences.push(array[i])
-            }
+            const arraytest = array.slice(t+1, array.length)
+            sentences.push(...arraytest)
+            // for(let i = (t + 1); i < array.length; i++){
+            //     sentences.push(array[i])
+            // }
         }
 
         obj.sentences = sentences
